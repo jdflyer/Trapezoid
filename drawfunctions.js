@@ -1,6 +1,3 @@
-function DrawPolygon(Verticies,Color){
-    DrawTriangle(Verticies)
-}
 function DrawTriangle(Verticies,Color){
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Verticies), gl.STATIC_DRAW);
     gl.useProgram(program);
@@ -16,9 +13,24 @@ function DrawTriangle(Verticies,Color){
     var offset = 0;        // start at the beginning of the buffer
     gl.vertexAttribPointer(
     positionAttributeLocation, size, type, normalize, stride, offset)
+    gl.uniform4f(colorUniformLocation, Color[0], Color[1], Color[2], Color[3]);
     var primitiveType = gl.TRIANGLES;
     var offset = 0;
     var count = 3;
     gl.drawArrays(primitiveType, offset, count);
 
+}
+
+function DrawTrapezoidLogo(){
+    DrawTriangle([0,  0.5,0.5,  0.5,-0.75, -0.5,],[1,0,0,1]);
+    DrawTriangle([0.5,  -0.5,0.5,  0.5,-0.75, -0.5,],[1,0,0,1]);
+}
+
+function DrawQuad(Verticies,Color){
+    //4 Verticies
+    //8 Array Values
+    //T1 V1 V2 V3
+    //T2 V2 V3 V4
+    DrawTriangle([Verticies[0], Verticies[1],Verticies[2], Verticies[3],Verticies[4],Verticies[5],],[ Color[0], Color[1], Color[2], Color[3]]);
+    DrawTriangle([Verticies[2], Verticies[3],Verticies[4], Verticies[5],Verticies[6],Verticies[7],],[ Color[0], Color[1], Color[2], Color[3]]);
 }

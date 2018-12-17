@@ -6,8 +6,11 @@ function MainLoop(){
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     // Clear the color buffer with specified clear color
     gl.clear(gl.COLOR_BUFFER_BIT);
-    DrawTriangle([0,  0.5,0.5,  0.5,-0.75, -0.5,],[1,1,1,1]);
-    DrawTriangle([0.5,  -0.5,0.5,  0.5,-0.75, -0.5,],[1,1,1,1]);
-    
+    DrawQuad([TransX,1,TransX+.25,1,TransX,-1,TransX+.25,-1],[1,1,1,1]);
+    DrawTrapezoidLogo();
+    if (TransX>=1){
+        TransX=-1.25;
+    }
+    TransX = TransX+0.005;
     window.requestAnimationFrame(MainLoop);
 }
