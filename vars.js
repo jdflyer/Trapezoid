@@ -4,3 +4,4 @@ var Ready = false;
 var TransX = -1;
 var TransY = 1;
 var leftpressed,rightpressed,uppressed,downpressed;
+var then = 0;
