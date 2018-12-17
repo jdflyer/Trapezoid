@@ -1,76 +1,43 @@
   // Vertex shader program
 
-  const vsSource = `
-  attribute vec4 aVertexPosition;
-
-  uniform mat4 uModelViewMatrix;
-  uniform mat4 uProjectionMatrix;
-
+  const TwoDVertexShader = `
+  // an attribute will receive data from a buffer
+  attribute vec4 a_position;
+ 
+  // all shaders have a main function
   void main() {
-    gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+ 
+    // gl_Position is a special variable a vertex shader
+    // is responsible for setting
+    gl_Position = a_position;
   }
 `;
 
 //Fragment shader program
-const fsSource = `
+const TwoDFragmentShader = `
+// fragment shaders don't have a default precision so we need
+// to pick one. mediump is a good default
+precision mediump float;
+
 void main() {
-  gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+  // gl_FragColor is a special variable a fragment shader
+  // is responsible for setting
+  gl_FragColor = vec4(1, 0, 0, 1); // return red
 }
 `;
 
-//Initiate Shader Program
-function initShaderProgram(gl, vsSource, fsSource) {
-    const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
-    const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
-  
-    // Create the shader program
-  
-    const shaderProgram = gl.createProgram();
-    gl.attachShader(shaderProgram, vertexShader);
-    gl.attachShader(shaderProgram, fragmentShader);
-    gl.linkProgram(shaderProgram);
-  
-    // If creating the shader program failed, alert
-  
-    if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-      alert('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shaderProgram));
-      return null;
-    }
-  
-    return shaderProgram;
-  }
-  
-  //Creates and Compiles the shader
-  function loadShader(gl, type, source) {
-    const shader = gl.createShader(type);
-  
-    // Send the source to the shader object
-  
-    gl.shaderSource(shader, source);
-  
-    // Compile the shader program
-  
-    gl.compileShader(shader);
-  
-    // See if it compiled successfully
-  
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      alert('An error occurred compiling the shaders: ' + gl.getShaderInfoLog(shader));
-      gl.deleteShader(shader);
-      return null;
-    }
-  
+function createShader(gl, type, source) {
+  var shader = gl.createShader(type);
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  var success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
+  if (success) {
     return shader;
   }
+ 
+  console.log(gl.getShaderInfoLog(shader));
+  gl.deleteShader(shader);
+}
 
-  const shaderProgram = initShaderProgram(gl, vsSource, fsSource); //Remove?
-  const programInfo = {
-    program: shaderProgram,
-    attribLocations: {
-      vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
-    },
-    uniformLocations: {
-      projectionMatrix: gl.getUniformLocation(shaderProgram, 'uProjectionMatrix'),
-      modelViewMatrix: gl.getUniformLocation(shaderProgram, 'uModelViewMatrix'),
-    },
-  };
+var vertexShader = createShader(gl, gl.VERTEX_SHADER, TwoDVertexShader);
+var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, TwoDFragmentShader);

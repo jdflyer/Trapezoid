@@ -10,9 +10,11 @@ function Setup(){
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     // Clear the color buffer with specified clear color
     gl.clear(gl.COLOR_BUFFER_BIT);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
     Ready = true;
     MainLoop();
 
-    const buffers = initBuffers(gl);
-    drawScene(gl, programInfo, buffers);
+    
 }
