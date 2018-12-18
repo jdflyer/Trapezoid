@@ -22,8 +22,8 @@ function DrawTriangle(Verticies,Color){
 }
 
 function DrawTrapezoidLogo(){
-    DrawTriangle([0,  0.5,0.5,  0.5,-0.75, -0.5,],[255,0,0,255]);
-    DrawTriangle([0.5,  -0.5,0.5,  0.5,-0.75, -0.5,],[255,0,0,255]);
+    DrawTriangle([0,  0.5,0.5,  0.5,-0.75, -0.5,],TrapezoidColor);
+    DrawTriangle([0.5,  -0.5,0.5,  0.5,-0.75, -0.5,],TrapezoidColor);
 }
 
 function DrawQuad(Verticies,Color){
