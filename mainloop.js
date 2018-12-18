@@ -11,7 +11,7 @@ function MainLoop(now){
     // Clear the color buffer with specified clear color
     gl.clear(gl.COLOR_BUFFER_BIT);
     //DrawQuad([TransX,TransY,TransX+.25,TransY,TransX,TransY-.5,TransX+.25,TransY-.5],[1,1,1,1]);
-    DrawRectangle(TransX,TransY,.25,.5,[1,1,1,1])
+    DrawRectangle(TransX,TransY,.25,.5,[255,255,255,255])
     DrawTrapezoidLogo();
     if (TransX>1){
         TransX=-1.25;

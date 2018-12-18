@@ -13,7 +13,7 @@ function DrawTriangle(Verticies,Color){
     var offset = 0;        // start at the beginning of the buffer
     gl.vertexAttribPointer(
     positionAttributeLocation, size, type, normalize, stride, offset)
-    gl.uniform4f(colorUniformLocation, Color[0], Color[1], Color[2], Color[3]);
+    gl.uniform4f(colorUniformLocation, Color[0]/255, Color[1]/255, Color[2]/255, Color[3]/255);
     var primitiveType = gl.TRIANGLES;
     var offset = 0;
     var count = 3;
@@ -22,8 +22,8 @@ function DrawTriangle(Verticies,Color){
 }
 
 function DrawTrapezoidLogo(){
-    DrawTriangle([0,  0.5,0.5,  0.5,-0.75, -0.5,],[1,0,0,1]);
-    DrawTriangle([0.5,  -0.5,0.5,  0.5,-0.75, -0.5,],[1,0,0,1]);
+    DrawTriangle([0,  0.5,0.5,  0.5,-0.75, -0.5,],[255,0,0,255]);
+    DrawTriangle([0.5,  -0.5,0.5,  0.5,-0.75, -0.5,],[255,0,0,255]);
 }
 
 function DrawQuad(Verticies,Color){
