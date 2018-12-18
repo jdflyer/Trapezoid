@@ -34,3 +34,7 @@ function DrawQuad(Verticies,Color){
     DrawTriangle([Verticies[0], Verticies[1],Verticies[2], Verticies[3],Verticies[4],Verticies[5],],[ Color[0], Color[1], Color[2], Color[3]]);
     DrawTriangle([Verticies[2], Verticies[3],Verticies[4], Verticies[5],Verticies[6],Verticies[7],],[ Color[0], Color[1], Color[2], Color[3]]);
 }
+
+function DrawRectangle(X,Y,SizeX,SizeY,Color){
+    DrawQuad([X,Y,X+SizeX,Y,X,Y-SizeY,X+SizeX,Y-SizeY],Color)
+}
