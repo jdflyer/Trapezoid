@@ -14,20 +14,20 @@ function MainLoop(now){
     DrawTrapezoidLogo();
     if (TransX>1){
         TransX=-1.25;
-    }else if(TransX<-1.25){
+    }if(TransX<-1.25){
         TransX=1;
-    }else if (TransY>1.5){
+    }if (TransY>1.5){
         TransY=-1;
-    }else if(TransY<-1){
+    }if(TransY<-1){
         TransY=1.5;
     }
     if (rightpressed==true){ //If right arrow is pressed
         TransX = TransX+0.005*deltatime;
-    }else if(leftpressed==true){ //If left arrow is pressed
+    }if(leftpressed==true){ //If left arrow is pressed
         TransX = TransX-0.005*deltatime;
-    }else if (uppressed==true){ //If right arrow is pressed
+    }if (uppressed==true){ //If right arrow is pressed
         TransY = TransY+0.01*deltatime;
-    }else if(downpressed==true){ //If left arrow is pressed
+    }if(downpressed==true){ //If left arrow is pressed
         TransY = TransY-0.01*deltatime;
     }
     window.requestAnimationFrame(MainLoop);
