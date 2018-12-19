@@ -38,3 +38,7 @@ function DrawQuad(Verticies,Color){
 function DrawRectangle(X,Y,SizeX,SizeY,Color){
     DrawQuad([X,Y,X+SizeX,Y,X,Y-SizeY,X+SizeX,Y-SizeY],Color)
 }
+
+function DrawTrianglePlane(){
+
+}
