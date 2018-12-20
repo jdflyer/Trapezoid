@@ -12,4 +12,5 @@ function createProgram(gl, vertexShader, fragmentShader) {
     gl.deleteProgram(program);
   }
 
-  var program = createProgram(gl, vertexShader, fragmentShader);
+  var TwoDprogram = createProgram(gl, TwoDvertexShader, TwoDfragmentShader);
+  var ThreeDprogram = createProgram(gl, ThreeDvertexShader, ThreeDfragmentShader);

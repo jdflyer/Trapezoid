@@ -1,14 +1,16 @@
 function MainLoop(){
+    if (Debug == true){meter.tickStart();}
     LoopFirst();
 
     Draw3dObjects();
 
-    Draw2DObjects();
+    //Draw2DObjects();
     
     Logic();
 
     TrapezoidColorChange();
 
+    if (Debug == true){meter.tick();}
     window.requestAnimationFrame(MainLoop);
 }
 
@@ -83,6 +85,22 @@ function Logic(){
     }if(downpressed==true){ //If left arrow is pressed
         TransY = TransY-0.05*deltatime;
     }
+    if (wpressed==true){ //If right arrow is pressed
+        CamPos[2] = CamPos[2]+0.05*deltatime;
+    }if(dpressed==true){ //If left arrow is pressed
+        CamPos[0] = CamPos[0]-0.05*deltatime;
+    }if (apressed==true){ //If right arrow is pressed
+        CamPos[0] = CamPos[0]+0.05*deltatime;
+    }if(spressed==true){ //If left arrow is pressed
+        CamPos[2] = CamPos[2]-0.05*deltatime;
+    }if (spacepressed==true){ //If right arrow is pressed
+        CamPos[1] = CamPos[1]+0.05*deltatime;
+    }if(shiftpressed==true){ //If left arrow is pressed
+        CamPos[1] = CamPos[1]-0.05*deltatime;
+    }
+    
+    
+    LookPos = [CamPos[0],CamPos[1],CamPos[2]+5]
 }
 
 function LoopFirst(){
@@ -92,7 +110,7 @@ function LoopFirst(){
     // Set clear color to black, fully opaque
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     // Clear the color buffer with specified clear color
-    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.clear(gl.COLOR_BUFFER_BIT| gl.DEPTH_BUFFER_BIT);
     if(!lasttime) {
         lasttime = Date.now();
         fps = 0;
@@ -102,7 +120,7 @@ function LoopFirst(){
     deltatime = (Date.now() - lasttime)/100;
     lasttime = Date.now();
     fps = 1/delta
-    console.log("FPS: "+fps+" DELTATIME: "+deltatime);
+    //console.log("FPS: "+fps+" DELTATIME: "+deltatime);
 }
 
 function Draw2DObjects(){
@@ -111,5 +129,14 @@ function Draw2DObjects(){
 }
 
 function Draw3dObjects(){
-    DrawTrianglePlane();
+    //DrawTrianglePlane([1,  1,0,1,  0,0,0,1, 0,],TrapezoidColor);
+    //gl.enable(gl.CULL_FACE);
+    //gl.cullFace(gl.FRONT_AND_BACK);
+    gl.enable(gl.DEPTH_TEST);
+    DrawQuadPlane([1,  1,0,-1,  1,0,1,-1, 0,-1,-1, 0,],[0,0,255,255]);
+    DrawQuadPlane([1,  1,2,-1,  1,2,1,-1, 2,-1,-1, 2,],[0,255,0,255]);
+    DrawQuadPlane([1,  1,0,-1,  1,0,1,1, 2,-1,1, 2,],[255,0,0,255]);
+    DrawQuadPlane([1,  -1,0,-1,  -1,0,1,-1, 2,-1,-1, 2,],[255,255,0,255]);
+    DrawQuadPlane([1,1,0,  1,1,2,  1,-1,0,  1,-1,2,],[0,255,255,255]);
+    DrawQuadPlane([-1,1,0,  -1,1,2,  -1,-1,0,  -1,-1,2,],[255,255,255,255]);
 }

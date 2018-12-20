@@ -15,6 +15,30 @@ document.addEventListener('keydown', function(event) {
         //console.log("Down was pressed")
         downpressed = true;
     }
+    if(event.keyCode == 87) {
+        //w
+        wpressed = true;
+    }
+    else if(event.keyCode == 65) {
+        //a
+        apressed = true;
+    }
+    else if(event.keyCode == 83) {
+        //s
+        spressed = true;
+    }
+    else if(event.keyCode == 68) {
+        //d
+        dpressed = true;
+    }
+    else if(event.keyCode == 16) {
+        //clrl
+        shiftpressed = true;
+    }
+    else if(event.keyCode == 32) {
+        //d
+        spacepressed = true;
+    }
 });
 document.addEventListener('keyup', function(event) {
     if(event.keyCode == 37) {
@@ -32,5 +56,29 @@ document.addEventListener('keyup', function(event) {
     else if(event.keyCode == 40) {
         //console.log("Down was released")
         downpressed = false;
+    }
+    if(event.keyCode == 87) {
+        //w
+        wpressed = false;
+    }
+    else if(event.keyCode == 65) {
+        //a
+        apressed = false;
+    }
+    else if(event.keyCode == 83) {
+        //s
+        spressed = false;
+    }
+    else if(event.keyCode == 68) {
+        //d
+        dpressed = false;
+    }
+    else if(event.keyCode == 16) {
+        //clrl
+        shiftpressed = false;
+    }
+    else if(event.keyCode == 32) {
+        //d
+        spacepressed = false;
     }
 });

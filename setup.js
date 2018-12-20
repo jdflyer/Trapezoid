@@ -14,6 +14,11 @@ function Setup(){
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
     Ready = true;
+    if(Debug == true){
+        FPSMeter.defaults.graph = 1;
+        FPSMeter.defaults.heat = 1;
+        meter = new FPSMeter(); //Arg1 Element Anchor, Arg2 Options ... http://darsa.in/fpsmeter/
+    }
     MainLoop();
 
     
