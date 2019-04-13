@@ -19,7 +19,7 @@ function Setup(){
         FPSMeter.defaults.heat = 1;
         meter = new FPSMeter(); //Arg1 Element Anchor, Arg2 Options ... http://darsa.in/fpsmeter/
     }
-    MainLoop();
+    window.requestAnimationFrame(MainLoop);
 
     
 }

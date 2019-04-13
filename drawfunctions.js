@@ -45,10 +45,6 @@ function DrawTrianglePlane(Verticies,Color){
     gl.enableVertexAttribArray(ThreeDpositionAttributeLocation);
     // Bind the position buffer.
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
- 
-    var matWorldUniformLocation = gl.getUniformLocation(ThreeDprogram, 'mworld')
-    var matViewUniformLocation = gl.getUniformLocation(ThreeDprogram, 'mview')
-    var matProjUniformLocation = gl.getUniformLocation(ThreeDprogram, 'mproj')
 
     var worldMatrix = new Float32Array(16);
     var viewMatrix = new Float32Array(16);
